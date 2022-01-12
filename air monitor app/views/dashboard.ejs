@@ -55,45 +55,43 @@
                 <td align="center">Toluen</td>
                 <td align="center">2.5 ppm</td>
             </tr>
-    </table>
-    <div id="chart">
+        </table>
     </div>
-    <script>
-        Plotly.newPlot('chart',[{
-                y:[],
-                type:'line',
-                line: {
-                color: 'rgb(128, 0, 128)',
-            }
-        }]);
-       
-         setInterval(function(){
-            var socket = io("http://localhost:3000");
-            var cnt = 0;
-        socket.on('Server-sent-data', function(data){
-            // return data;
-            console.log(data)              
-            
-            Plotly.extendTraces('chart',{ y:[[data.items[11]]]}, [0]);
-            $(document).ready(function(){
-                 $("#nh4").text(data.items[11]);
-                   });
-
-            cnt++;
-            if(cnt > 50) {
-                Plotly.relayout('chart',{
-                    xaxis: {
-                        range: [cnt-50,cnt]
-                    }
+    <!--Ve chart-->
+    <div id="chart">
+        <script>
+            Plotly.newPlot('chart',[{
+                    y:[],
+                    type:'line',
+                    line: {
+                    color: 'rgb(128, 0, 128)',
+                }
+            }]);
+            setInterval(function(){
+                var socket = io("http://localhost:3000");
+                var cnt = 0;
+                socket.on('Server-sent-data', function(data){
+                // return data;
+                console.log(data)              
                 
-                 }
-                 );
-            };
-        })
-         },2000);
-        
-    </script>
-</div>
+                Plotly.extendTraces('chart',{ y:[[data.items[11]]]}, [0]);
+                $(document).ready(function(){
+                    $("#nh4").text(data.items[11]);
+                    });
+
+                cnt++;
+                if(cnt > 50) {
+                    Plotly.relayout('chart',{
+                        xaxis: {
+                            range: [cnt-50,cnt]
+                        }
+                    }
+                    );
+                };
+            })
+            },2000);
+        </script>
+    </div>
 </body>
 </html>
 
