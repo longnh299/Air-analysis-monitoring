@@ -71,7 +71,7 @@ app.use('/users', require('./routes/users.js'));
 // import mqtt lib
 const mqtt = require('mqtt')
 
-const mqtt_server = '192.168.1.198'
+const mqtt_server = '192.168.1.231' // xem ip trong cmd
 const port_mqtt = '1883'
 const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
 
