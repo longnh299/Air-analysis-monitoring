@@ -16,48 +16,47 @@
     padding-top: 50px;
 }
 
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-2.0.0.min.js"></script>
-    <script src="socket.io/socket.io.js"></script>
-    <script src="jquery-3.5.1.min.js"></script>
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.0.0.min.js"></script>
+<script src="socket.io/socket.io.js"></script>
+<script src="jquery-3.5.1.min.js"></script>
 </head>
 <body>
     <div class="topnav-right">
         <a href="/users/logout">Đăng Xuất</a>
-      </div>   
-<div class="div2">
-    <p class="lead mb-3">Xin chào <%= %> , bạn hãy chọn trạm đo</p>
-    <label>Trạm đo:</label>
-    <select>
+    </div>   
+    <div class="div2">
+        <p class="lead mb-3">Xin chào <%= %> , bạn hãy chọn trạm đo</p>
+        <label>Trạm đo:</label>
+        <select>
         <option value="hungyen">Hưng Yên</option>
         <option value="ninhbinh">Ninh Bình</option>
-    </select>
-    <p>Chúng tôi cung cấp thông tin về nồng độ các chất khí cho bạn như bảng dưới đây :</p>
-    <table border="1" width="550">
-        <tr align="center">
-            <th>Tên Chất khí</th>
-            <th>Nồng độ</th>
-        </tr>
-        <tr>
-            <td align="center">CO2</td>
-            <td align="center">402 ppm</td>
-        </tr>
-        <tr>
-            <td align="center">CO</td>
-            <td align="center">2.3 ppm</td>
-        </tr>
-        <tr>
-            <td align="center">NH4</td>
-            <td align="center" ><span id="nh4"></span> </td>
-        </tr>
-        <tr>
-            <td align="center">Toluen</td>
-            <td align="center">2.5 ppm</td>
-        </tr>
+        </select>
+        <p>Chúng tôi cung cấp thông tin về nồng độ các chất khí cho bạn như bảng dưới đây :</p>
+        <table border="1" width="550">
+            <tr align="center">
+                <th>Tên Chất khí</th>
+                <th>Nồng độ</th>
+            </tr>
+            <tr>
+                <td align="center">CO2</td>
+                <td align="center">402 ppm</td>
+            </tr>
+            <tr>
+                <td align="center">CO</td>
+                <td align="center">2.3 ppm</td>
+            </tr>
+            <tr>
+                <td align="center">NH4</td>
+                <td align="center" ><span id="nh4"></span> </td>
+            </tr>
+            <tr>
+                <td align="center">Toluen</td>
+                <td align="center">2.5 ppm</td>
+            </tr>
     </table>
     <div id="chart">
-
     </div>
     <script>
         Plotly.newPlot('chart',[{
@@ -97,65 +96,6 @@
 </div>
 </body>
 </html>
-
-<!-- <head>  
-    <script>
-    
-    </script>
-    <script src="jquery.js"></script>
-    <script src="socket.io/socket.io.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-    <script src="https://cdn.plot.ly/plotly-2.0.0.min.js"></script>
-    <script>
-    //     setInterval(function(){var socket = io("http://localhost:3000");
-    //      //client nhận dữ liệu từ server
-    //      var count =1;
-	// 		socket.on("Server-sent-data", function(data)
-	// 		{
-	// 			// $("#chat-content").append(data);
-    //             console.log(data.items[0]);
-    //             console.log(count+1);
-    //             setTimeout(function(){
-    //              //function () {
-    
-    // var chart = new CanvasJS.Chart("chartContainer", {
-    //     animationEnabled: true,
-    //     theme: "light2",
-    //     title:{
-    //         text: "Simple Line Chart"
-    //     },
-    //     data: [{        
-    //         type: "line",
-    //           indexLabelFontSize: 16,
-    //         dataPoints: [
-    //             { y: data.items[0]*100 },
-    //             { y: data.items[1]*100},
-    //             { y: data.items[2]*100, indexLabel: "\u2191 highest",markerColor: "red", markerType: "triangle" },
-    //             { y: data.items[3]*100 },
-    //             { y: data.items[4]*100 },
-    //             { y: data.items[5]*100 },
-    //             { y: data.items[6]*100},
-    //             { y: data.items[7]*100 },
-    //             { y: data.items[8]*100 , indexLabel: "\u2193 lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
-    //             { y: data.items[9]*100 },
-    //             { y: data.items[10]*100 },
-    //             { y: data.items[11]*100 }
-    //         ]
-    //     }]
-    // });
-    // chart.render();
-    
-    // // }
-    //              },1000);
-                
-	// 		});},3000);
-        
-    </script>
-    </head>
-    <body>
-    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    </body> -->
 
 
 
