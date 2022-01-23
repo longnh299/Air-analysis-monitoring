@@ -30,8 +30,8 @@
         <p class="lead mb-3">Xin chào <%= %> , bạn hãy chọn trạm đo</p>
         <label>Trạm đo:</label>
         <select>
-        <option value="hungyen">Hưng Yên</option>
-        <option value="ninhbinh">Ninh Bình</option>
+        <option value="hungyen">Ninh Bình</option>
+        <option value="ninhbinh">Hưng Yên</option>
         </select>
         <p>Chúng tôi cung cấp thông tin về nồng độ các chất khí cho bạn như bảng dưới đây :</p>
         <table border="1" width="550">
@@ -41,19 +41,19 @@
             </tr>
             <tr>
                 <td align="center">CO2</td>
-                <td align="center">402 ppm</td>
+                <td align="center"><span id="co2"></span></td>
             </tr>
             <tr>
                 <td align="center">CO</td>
-                <td align="center">2.3 ppm</td>
+                <td align="center"><span id="co"></span></td>
             </tr>
             <tr>
                 <td align="center">NH4</td>
-                <td align="center" ><span id="nh4"></span> </td>
+                <td align="center"><span id="nh4"></span></td>
             </tr>
             <tr>
-                <td align="center">Toluen</td>
-                <td align="center">2.5 ppm</td>
+                <td align="center">Tolueno</td>
+                <td align="center"><span id="tolueno"></span></td>
             </tr>
         </table>
     </div>
@@ -70,13 +70,13 @@
             setInterval(function(){
                 var socket = io("http://localhost:3000");
                 var cnt = 0;
-                socket.on('Server-sent-data', function(data){
+                socket.on('Server-sent-dataNH4', function(dataNH4){
                 // return data;
-                console.log(data)              
+                console.log(dataNH4)              
                 
-                Plotly.extendTraces('chart',{ y:[[data.items[11]]]}, [0]);
+                Plotly.extendTraces('chart',{ y:[[dataNH4.items[11]]]}, [0]);
                 $(document).ready(function(){
-                    $("#nh4").text(data.items[11]);
+                    $("#nh4").text(dataNH4.items[11]);
                     });
 
                 cnt++;
@@ -84,6 +84,108 @@
                     Plotly.relayout('chart',{
                         xaxis: {
                             range: [cnt-50,cnt]
+                        }
+                    }
+                    );
+                };
+            })
+            },2000);
+        </script>
+    </div>
+    <div id='chart1'>
+        <script>
+            Plotly.newPlot('chart1',[{
+                    y:[],
+                    type:'line',
+                    line: {
+                    color: 'rgb(128, 0, 128)',
+                }
+            }]);
+            setInterval(function(){
+                var socket = io("http://localhost:3000");
+                var cnt1 = 0;
+                socket.on('Server-sent-dataCO', function(dataCO){
+                // return data;
+                console.log(dataCO)              
+                
+                Plotly.extendTraces('chart1',{ y:[[dataCO.items[11]]]}, [0]);
+                $(document).ready(function(){
+                    $("#co").text(dataCO.items[11]);
+                    });
+
+                cnt1++;
+                if(cnt1 > 50) {
+                    Plotly.relayout('chart1',{
+                        xaxis: {
+                            range: [cnt1-50,cnt1]
+                        }
+                    }
+                    );
+                };
+            })
+            },2000);
+        </script>
+    </div>
+    <div id='chart2'>
+        <script>
+            Plotly.newPlot('chart2',[{
+                    y:[],
+                    type:'line',
+                    line: {
+                    color: 'rgb(128, 0, 128)',
+                }
+            }]);
+            setInterval(function(){
+                var socket = io("http://localhost:3000");
+                var cnt2 = 0;
+                socket.on('Server-sent-dataCO2', function(dataCO2){
+                // return data;
+                console.log(dataCO2)              
+                
+                Plotly.extendTraces('chart2',{ y:[[dataCO2.items[11]]]}, [0]);
+                $(document).ready(function(){
+                    $("#co2").text(dataCO2.items[11]);
+                    });
+
+                cnt2++;
+                if(cnt2 > 50) {
+                    Plotly.relayout('chart2',{
+                        xaxis: {
+                            range: [cnt2-50,cnt2]
+                        }
+                    }
+                    );
+                };
+            })
+            },2000);
+        </script>
+    </div>
+    <div id="chart3">
+        <script>
+            Plotly.newPlot('chart3',[{
+                    y:[],
+                    type:'line',
+                    line: {
+                    color: 'rgb(128, 0, 128)',
+                }
+            }]);
+            setInterval(function(){
+                var socket = io("http://localhost:3000");
+                var cnt3 = 0;
+                socket.on('Server-sent-dataTolueno', function(dataTolueno){
+                // return data;
+                console.log(dataTolueno)              
+                
+                Plotly.extendTraces('chart',{ y:[[dataTolueno.items[11]]]}, [0]);
+                $(document).ready(function(){
+                    $("#tolueno").text(dataTolueno.items[11]);
+                    });
+
+                cnt3++;
+                if(cnt3 > 50) {
+                    Plotly.relayout('chart3',{
+                        xaxis: {
+                            range: [cnt3-50,cnt3]
                         }
                     }
                     );
