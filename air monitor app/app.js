@@ -122,42 +122,95 @@ client.on('connect', () => {
       return this.getSize()===0;
   }
 }
-const air = new queue();
-air.enqueue('4.26');
-air.enqueue('4.26');
-air.enqueue('4.26');
-air.enqueue('4.26');
-air.enqueue('4.26');
-air.enqueue('4.26');
-air.enqueue('4.26');
-air.enqueue('4.26');
-air.enqueue('4.26');
-air.enqueue('4.26');
-air.enqueue('4.26');
-air.enqueue('4.26');
+const airNH4 = new queue();
+airNH4.enqueue('4.26');
+airNH4.enqueue('4.26');
+airNH4.enqueue('4.26');
+airNH4.enqueue('4.26');
+airNH4.enqueue('4.26');
+airNH4.enqueue('4.26');
+airNH4.enqueue('4.26');
+airNH4.enqueue('4.26');
+airNH4.enqueue('4.26');
+airNH4.enqueue('4.26');
+airNH4.enqueue('4.26');
+airNH4.enqueue('4.26');
+const airCO = new queue();
+airCO.enqueue('4.26');
+airCO.enqueue('4.26');
+airCO.enqueue('4.26');
+airCO.enqueue('4.26');
+airCO.enqueue('4.26');
+airCO.enqueue('4.26');
+airCO.enqueue('4.26');
+airCO.enqueue('4.26');
+airCO.enqueue('4.26');
+airCO.enqueue('4.26');
+airCO.enqueue('4.26');
+airCO.enqueue('4.26');
+const airCO2 = new queue();
+airCO2.enqueue('4.26');
+airCO2.enqueue('4.26');
+airCO2.enqueue('4.26');
+airCO2.enqueue('4.26');
+airCO2.enqueue('4.26');
+airCO2.enqueue('4.26');
+airCO2.enqueue('4.26');
+airCO2.enqueue('4.26');
+airCO2.enqueue('4.26');
+airCO2.enqueue('4.26');
+airCO2.enqueue('4.26');
+airCO2.enqueue('4.26');
+const airTolueno = new queue();
+airTolueno.enqueue('4.26');
+airTolueno.enqueue('4.26');
+airTolueno.enqueue('4.26');
+airTolueno.enqueue('4.26');
+airTolueno.enqueue('4.26');
+airTolueno.enqueue('4.26');
+airTolueno.enqueue('4.26');
+airTolueno.enqueue('4.26');
+airTolueno.enqueue('4.26');
+airTolueno.enqueue('4.26');
+airTolueno.enqueue('4.26');
+airTolueno.enqueue('4.26');
 // waiting for message from topic
 client.on('message', (topic, payload) => {
   //console.log('Received Message:', topic, payload.toString())
   var obj = JSON.parse(payload.toString());
   var arr=[obj.CO,obj.CO2,obj.NH4,obj.Tolueno,obj.Alcohol,obj.Acetona]
   // console.log(arr)
-  air.enqueue(obj.NH4);
-  if(air.getSize() > 5){
-    air.dequeue();
+  airNH4.enqueue(obj.NH4);
+  airCO.enqueue(obj.CO);
+  airCO2.enqueue(obj.CO2);
+  airTolueno.enqueue(obj.Tolueno);
+  if(airNH4.getSize() > 5){
+    airNH4.dequeue();
   }
-  console.log(air);
-  /*
-  app.get('/dashboard', function(req, res) {
-    var num=air.dequeue(); 
-    res.render('dashboard',{value1:num});
-  }); */
+  if(airCO.getSize() > 5){
+    airCO.dequeue();
+  }
+  if(airCO2.getSize() > 5){
+    airCO2.dequeue();
+  }
+  if(airTolueno.getSize() > 5){
+    airTolueno.dequeue();
+  }
+  // connect socketio
   io.on("connection", function(socket)
 	{
 		socket.on("disconnect", function()
 		{});
-				var data=air;
-        socket.emit("Server-sent-data", data);
+				var dataNH4=airNH4;
+        var dataCO=airCO;
+        var dataCO2=airCO2;
+        var dataTolueno=airTolueno;
+        socket.emit("Server-sent-dataNH4", dataNH4); // truyền data nh4 sang client
+        socket.emit("Server-sent-dataCO", dataCO);  // truyền data co sang client
+        socket.emit("Server-sent-dataCO2", dataCO2);  // truyền data co2 sang client
+        socket.emit("Server-sent-dataTolueno", dataTolueno);  // truyền data tolueno sang client
 	});
+  
 
 // create route, display view
 
@@ -167,30 +220,6 @@ app.get("/dashboard", function(req, res)
 	});
 
 })
-////////////////////////////////////////////////
-
-
-// tạo kết nối giữa client và server
-// io.on("connection", function(socket)
-// 	{
-// 		socket.on("disconnect", function()
-// 			{
-// 			});
-//          //server lắng nghe dữ liệu từ client
-// 		// socket.on("Client-sent-data", function(data)
-// 			// {
-// 				//sau khi lắng nghe dữ liệu, server phát lại dữ liệu này đến các client khác
-//                 socket.emit("Server-sent-data", data);
-// 	// 		 });
-// 	});
-
-// // create route, display view
-
-// app.get("/dashboard", function(req, res)
-// 	{
-// 		res.render("dashboard");
-// 	});
-
 
 
 
