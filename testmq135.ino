@@ -134,7 +134,7 @@ void loop() {
 
  // Serial.print("|   "); Serial.print(CO); 
   //Serial.print("   |   "); Serial.print(Alcohol);
-  // Note: 200 Offset for CO2 source: https://github.com/miguel5612/MQSensorsLib/issues/29
+  
   /*
   Motivation:
   We have added 200 PPM because when the library is calibrated it assumes the current state of the
@@ -179,4 +179,4 @@ client.publish("/ktmt/out", buffer);
   //client.publish("/ktmt/out",);
   delay(2000); //Sampling frequency
 }
-// hello test git 
+
