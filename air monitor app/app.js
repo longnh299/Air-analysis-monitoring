@@ -10,8 +10,6 @@ var server = require("http").Server(app);
 var io = require("socket.io")(server);
 server.listen(3000);
 
-
-
 // Passport Config
 require('./config/passport')(passport);
 
@@ -60,21 +58,17 @@ app.use(function(req, res, next) {
 });
 
 // Routes
-
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js')); 
 
 // const PORT = process.env.PORT || 5000;
-
 // app.listen(PORT, console.log(`Server running on  ${PORT}`));
 
 // import mqtt lib
 const mqtt = require('mqtt')
-
-const mqtt_server = '192.168.1.231' // xem ip trong cmd
+const mqtt_server = 'broker.mqtt-dashboard.com' // xem ip trong cmd
 const port_mqtt = '1883'
 const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
-
 const connectUrl = `mqtt://${mqtt_server}:${port_mqtt}`
 
 // connect to mqtt broker
@@ -111,7 +105,6 @@ client.on('connect', () => {
   dequeue() {
       return this.items.shift();
   }
-
   peek(){
       return this.items[0];
   }
@@ -178,7 +171,7 @@ airTolueno.enqueue('4.26');
 client.on('message', (topic, payload) => {
   //console.log('Received Message:', topic, payload.toString())
   var obj = JSON.parse(payload.toString());
-  var arr=[obj.CO,obj.CO2,obj.NH4,obj.Tolueno,obj.Alcohol,obj.Acetona]
+  var arr=[obj.CO,obj.CO2,obj.NH4,obj.Tolueno]
   // console.log(arr)
   airNH4.enqueue(obj.NH4);
   airCO.enqueue(obj.CO);
