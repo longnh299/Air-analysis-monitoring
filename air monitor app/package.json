@@ -1,7 +1,7 @@
 {
-  "name": "air_monitor",
+  "name": "node_passport_login",
   "version": "2.0.0",
-  "description": "website monitoring air and chart",
+  "description": "Node.js authentication with Passport",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",

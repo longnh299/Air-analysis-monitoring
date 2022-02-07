@@ -107,7 +107,7 @@
     </div>
     <script>
         // Chart 0
-        var typeChart = 'line';
+        var typeChart = 'bar';
 
         Plotly.newPlot('chart',[{
             y:[],
@@ -163,10 +163,10 @@
             Plotly.extendTraces('chart1',{ y:[[dataCO.items[0]]]}, [0]);
             $(document).ready(function(){
                 $("#co").text(dataCO.items[0]);
-                if(dataCO.items[0] >= 1) {
+                if(dataCO.items[0] >= 5) {
                     $("#alCO").text("Nguy hiểm");
                 }
-                if(dataCO.items[0] < 1) {
+                if(dataCO.items[0] < 5) {
                     $("#alCO").text("Tốt");
                 }
             });
@@ -202,10 +202,10 @@
             Plotly.extendTraces('chart2',{ y:[[dataCO2.items[0]]]}, [0]);
             $(document).ready(function(){
                 $("#co2").text(dataCO2.items[0]);
-                if(dataCO2.items[0] >= 400) {
+                if(dataCO2.items[0] >= 5) {
                     $("#alCO2").text("Nguy hiểm");
                 }
-                if(dataCO2.items[0] < 400) {
+                if(dataCO2.items[0] < 5) {
                     $("#alCO2").text("Tốt");
                 }
             });
@@ -241,10 +241,10 @@
             Plotly.extendTraces('chart3',{ y:[[dataTolueno.items[0]]]}, [0]);
             $(document).ready(function(){
                 $("#tolueno").text(dataTolueno.items[0]);
-                if(dataTolueno.items[0] >= 2.5) {
+                if(dataTolueno.items[0] >= 5) {
                     $("#alTolueno").text("Nguy hiểm");
                 }
-                if(dataTolueno.items[0] < 2.5) {
+                if(dataTolueno.items[0] < 5) {
                     $("#alTolueno").text("Tốt");
                 }
             });

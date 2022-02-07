@@ -12,6 +12,9 @@ server.listen(3000);
 
 // Passport Config
 require('./config/passport')(passport);
+require('events').EventEmitter.prototype._maxListeners = 100;
+
+
 
 // DB Config
 //const db = require('./config/keys').mongoURI;
@@ -66,7 +69,7 @@ app.use('/users', require('./routes/users.js'));
 
 // import mqtt lib
 const mqtt = require('mqtt')
-const mqtt_server = 'broker.mqtt-dashboard.com' // xem ip trong cmd
+const mqtt_server = '192.168.1.231' // xem ip trong cmd
 const port_mqtt = '1883'
 const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
 const connectUrl = `mqtt://${mqtt_server}:${port_mqtt}`
@@ -118,53 +121,13 @@ client.on('connect', () => {
 const airNH4 = new queue();
 airNH4.enqueue('4.26');
 airNH4.enqueue('4.26');
-airNH4.enqueue('4.26');
-airNH4.enqueue('4.26');
-airNH4.enqueue('4.26');
-airNH4.enqueue('4.26');
-airNH4.enqueue('4.26');
-airNH4.enqueue('4.26');
-airNH4.enqueue('4.26');
-airNH4.enqueue('4.26');
-airNH4.enqueue('4.26');
-airNH4.enqueue('4.26');
 const airCO = new queue();
-airCO.enqueue('4.26');
-airCO.enqueue('4.26');
-airCO.enqueue('4.26');
-airCO.enqueue('4.26');
-airCO.enqueue('4.26');
-airCO.enqueue('4.26');
-airCO.enqueue('4.26');
-airCO.enqueue('4.26');
-airCO.enqueue('4.26');
-airCO.enqueue('4.26');
 airCO.enqueue('4.26');
 airCO.enqueue('4.26');
 const airCO2 = new queue();
 airCO2.enqueue('4.26');
 airCO2.enqueue('4.26');
-airCO2.enqueue('4.26');
-airCO2.enqueue('4.26');
-airCO2.enqueue('4.26');
-airCO2.enqueue('4.26');
-airCO2.enqueue('4.26');
-airCO2.enqueue('4.26');
-airCO2.enqueue('4.26');
-airCO2.enqueue('4.26');
-airCO2.enqueue('4.26');
-airCO2.enqueue('4.26');
 const airTolueno = new queue();
-airTolueno.enqueue('4.26');
-airTolueno.enqueue('4.26');
-airTolueno.enqueue('4.26');
-airTolueno.enqueue('4.26');
-airTolueno.enqueue('4.26');
-airTolueno.enqueue('4.26');
-airTolueno.enqueue('4.26');
-airTolueno.enqueue('4.26');
-airTolueno.enqueue('4.26');
-airTolueno.enqueue('4.26');
 airTolueno.enqueue('4.26');
 airTolueno.enqueue('4.26');
 // waiting for message from topic
@@ -177,16 +140,16 @@ client.on('message', (topic, payload) => {
   airCO.enqueue(obj.CO);
   airCO2.enqueue(obj.CO2);
   airTolueno.enqueue(obj.Tolueno);
-  if(airNH4.getSize() > 5){
+  if(airNH4.getSize() > 2){
     airNH4.dequeue();
   }
-  if(airCO.getSize() > 5){
+  if(airCO.getSize() > 2){
     airCO.dequeue();
   }
-  if(airCO2.getSize() > 5){
+  if(airCO2.getSize() > 2){
     airCO2.dequeue();
   }
-  if(airTolueno.getSize() > 5){
+  if(airTolueno.getSize() > 2){
     airTolueno.dequeue();
   }
   // connect socketio
@@ -207,12 +170,11 @@ client.on('message', (topic, payload) => {
 
 // create route, display view
 
-app.get("/dashboard", function(req, res)
-	{
-		res.render("dashboard");
-	});
-
-})
+  // app.get("/dashboard", function(req, res)
+	// {
+	// 	res.render("dashboard");
+	// });
+});
 
 
 
