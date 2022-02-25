@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        :root{
+            font-size: 15px;
+        }
+        .home{
+            padding: 3px 0px 3px 50px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.0.0.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="background-color:rgb(199, 199, 199);">
+    <div class="container" style="width:100%;">
+        <div class="header col-12 mt-4">
+            <ul class="row d-flex justify-content-end nav" style="height: 40px;font-size: 16px;">
+                <li class="nav-item ml-4 mr-5">
+                    <button type="button" id="setColumnChart" class="btn btn-primary">
+                        <a href="/users/logout" style="color: white;">Đăng xuất</a>
+                </li>
+            </ul> 
+        </div>
+        <div style="padding: 30px;font-size: 30px;margin: auto;text-align: center;font-weight: bolder;">
+            <div>
+                Danh Sách Trạm Đo 
+            </div>
+        </div>
+        <div style="width: 60%;height: 150px;padding: 10px;background-color: white;margin: 10px auto;border-radius: 10px;border: 2px solid rgb(0,0,0,0.3);display: flex;justify-content: space-between;">
+            <a href="/dashboard">
+                <img src="https://file.vfo.vn/hinh/2018/02/ngoi-nha.jpg" alt="" style="height:80%;margin-top: 10px;">
+            </a>
+            <div style="width:80%; height: 100%;">
+                <div class="home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-signpost-2" viewBox="0 0 16 16">
+                    <path d="M7 1.414V2H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h5v1H2.5a1 1 0 0 0-.8.4L.725 8.7a.5.5 0 0 0 0 .6l.975 1.3a1 1 0 0 0 .8.4H7v5h2v-5h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H9V6h4.5a1 1 0 0 0 .8-.4l.975-1.3a.5.5 0 0 0 0-.6L14.3 2.4a1 1 0 0 0-.8-.4H9v-.586a1 1 0 0 0-2 0zM13.5 3l.75 1-.75 1H2V3h11.5zm.5 5v2H2.5l-.75-1 .75-1H14z"/>
+                    </svg>:Ninh Bình</div>
+                <div class="home">Trạng thái: Đang hoạt động 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="green" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                      </svg>
+                </div>
+            </div>
+        </div>
+        <div style="width: 60%;height: 150px;padding: 10px;background-color: white;margin: 10px auto;border-radius: 10px;border: 2px solid rgb(0,0,0,0.3);display: flex;justify-content: space-between;">
+            <a href="">
+                <img src="https://file.vfo.vn/hinh/2018/02/ngoi-nha.jpg" alt="" style="height:80%;margin-top: 10px;">
+            </a>
+            <div style="width:80%; height: 100%;">
+                <div class="home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-signpost-2" viewBox="0 0 16 16">
+                    <path d="M7 1.414V2H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h5v1H2.5a1 1 0 0 0-.8.4L.725 8.7a.5.5 0 0 0 0 .6l.975 1.3a1 1 0 0 0 .8.4H7v5h2v-5h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H9V6h4.5a1 1 0 0 0 .8-.4l.975-1.3a.5.5 0 0 0 0-.6L14.3 2.4a1 1 0 0 0-.8-.4H9v-.586a1 1 0 0 0-2 0zM13.5 3l.75 1-.75 1H2V3h11.5zm.5 5v2H2.5l-.75-1 .75-1H14z"/>
+                    </svg>: Hưng Yên</div>
+                <div class="home">Trạng thái: Không hoạt động
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="red" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                      </svg>
+                </div>
+            </div>
+        </div>
+        <div style="width: 60%;height: 150px;padding: 10px;background-color: white;margin: 10px auto;border-radius: 10px;border: 2px solid rgb(0,0,0,0.3);display: flex;justify-content: space-between;">
+            <a href="">
+                <img src="https://file.vfo.vn/hinh/2018/02/ngoi-nha.jpg" alt="" style="height:80%;margin-top: 10px;">
+            </a>
+            <div style="width:80%; height: 100%;">
+                <div class="home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-signpost-2" viewBox="0 0 16 16">
+                    <path d="M7 1.414V2H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h5v1H2.5a1 1 0 0 0-.8.4L.725 8.7a.5.5 0 0 0 0 .6l.975 1.3a1 1 0 0 0 .8.4H7v5h2v-5h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H9V6h4.5a1 1 0 0 0 .8-.4l.975-1.3a.5.5 0 0 0 0-.6L14.3 2.4a1 1 0 0 0-.8-.4H9v-.586a1 1 0 0 0-2 0zM13.5 3l.75 1-.75 1H2V3h11.5zm.5 5v2H2.5l-.75-1 .75-1H14z"/>
+                    </svg>: Hà Nội</div>
+                <div class="home">Trạng thái: Không hoạt động
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="red" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="8"/>
+                      </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

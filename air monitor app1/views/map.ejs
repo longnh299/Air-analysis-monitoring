@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.0.0.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="header col-12 mt-4">
+            <ul class="row d-flex justify-content-end nav" style="height: 40px;font-size: 16px;">
+                <li class="nav-item">
+                    <button type="button" id="setLineChart" class="btn btn-primary">
+                        <a href="/list" style="color: white;">Danh Sách Trạm Đo</a>
+                    </button>
+                </li>
+                <li class="nav-item ml-3">
+                    <button type="button" id="setLineChart" class="btn btn-primary">
+                        <a href="/dashboard" style="color: white;">Biểu đồ đường</a>
+                    </button>
+                </li>
+                <li class="nav-item ml-3">
+                    <button type="button" id="setColumnChart" class="btn btn-primary">
+                        <a href="/dashboard1" style="color: white;">Biểu đồ cột</a>
+                    </button>
+                </li>
+                <li class="nav-item ml-4 mr-1">
+                    <button type="button" id="setColumnChart" class="btn btn-primary">
+                        <a href="/map" style="color: white;">Vị trí</a>
+                </li>
+                <li class="nav-item ml-4 mr-5">
+                    <button type="button" id="setColumnChart" class="btn btn-primary">
+                        <a href="/users/logout" style="color: white;">Đăng xuất</a>
+                </li>
+            </ul>
+            
+        </div>   
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3741.4922708979852!2d105.90649921475075!3d20.321272586385803!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313679d868a2671f%3A0x996a0803d9728a18!2zVEjDlE4gVEjhuqZOIFRISeG7hlU!5e0!3m2!1svi!2s!4v1645544225727!5m2!1svi!2s" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</body>
+</html>
