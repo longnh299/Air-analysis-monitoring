@@ -111,7 +111,7 @@ void loop() {
     reconnect();
     }
   client.loop();
-  
+  String sensorId = "s1";
   MQ135.update(); // Update data, the arduino will be read the voltage on the analog pin
 
   MQ135.setA(605.18); MQ135.setB(-3.937); // Configurate the ecuation values to get CO concentration
@@ -158,12 +158,12 @@ void loop() {
   */
   // dong goi json
   JsonData="";
-  JsonData="{\"CO\":\"" + String(CO)+ "\"," +
-            "\"Alcohol\":\"" + String(Alcohol) + "\"," +
+  JsonData="{\"sensorId\":\"" + sensorId+ "\"," +
+            "\"CO\":\"" + String(CO) + "\"," +
             "\"CO2\":\"" + String(CO2+400) + "\"," +
             "\"Tolueno\":\"" + String(Tolueno) + "\"," +
-            "\"NH4\":\"" + String(NH4) + "\"," +
-            "\"Acetona\":\"" + String(Acetona) + "\"}";
+            "\"NH4\":\"" + String(NH4) + "\"}";
+  
    //Serial.println(JsonData);
    StaticJsonDocument<200> doc;
    deserializeJson(doc,JsonData);
@@ -177,6 +177,6 @@ client.publish("/ktmt/out", buffer);
    
   
   //client.publish("/ktmt/out",);
-  delay(2000); //Sampling frequency
+  delay(5000); //Sampling frequency
 }
 
